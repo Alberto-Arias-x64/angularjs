@@ -10,7 +10,7 @@
 <body ng-controller="firstController">
     <div>
         <input type="text" ng-model="name">
-        <select ng-model="quantity" ng-change="repeat()">
+        <select ng-model="quantity">
             <option value="" selected hidden>Selecciona</option>
             <option>1</option>
             <option>2</option>
@@ -18,11 +18,12 @@
             <option>4</option>
             <option>5</option>
         </select>
+        <button ng-click="repeat()">Load</button>
     </div>
     <p>{{"Comentario: " + name}}</p>
     <ul>
-        <li ng-repeat="q in commentaryArray">
-            {{name}}
+        <li ng-repeat="comment in commentaryArray">
+            {{comment.title}}
         </li>
     </ul>
     <script src="controller.js"></script>
