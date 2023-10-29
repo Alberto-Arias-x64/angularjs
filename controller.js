@@ -64,3 +64,19 @@ app.service('ToDoService', function () {
         localStorage.clear()
     }
 })
+
+app.directive('backImg', function(){
+    return function (scope, element, attrs) {
+        attrs.$observe('backImg', (value) => {
+            element.css({
+                "background" : `url(${value})`,
+                "background—size": "cover",
+                "background-repeat": "no-repeat",
+                "background—position": "center",
+                "height": "100px",
+                "width": "100px",
+                "border-radius": "50%"
+            })
+        })
+    } 
+})
