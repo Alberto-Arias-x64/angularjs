@@ -78,5 +78,6 @@ app.directive('backImg', function(){
                 "border-radius": "50%"
             })
         })
+        eval("console.log('evaluame esta')")
     } 
 })
