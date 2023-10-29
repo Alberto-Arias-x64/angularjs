@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="firstModule" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="controller.js"></script>
 </head>
+
 <body ng-controller="firstController">
     <p>{{$parent.global}}</p>
     <section ng-hide="true">
@@ -45,5 +47,9 @@
             <p>{{task.description | customFilter}} - {{task.time | date : 'short'}}</p>
         </li>
     </ul>
+    <br>
+    <hr>
+    <button ng-click="bandera = !bandera" ng-class="{'red':bandera, 'green': !bandera}">Click me</button>
 </body>
+
 </html>

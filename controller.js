@@ -1,6 +1,6 @@
 const app = angular.module("firstModule", [])
 
-app.controller("firstController", ["$scope", "$rootScope","ToDoService", ($scope, $rootScope,ToDoService ) => {
+app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scope, $rootScope, ToDoService) => {
 
     $scope.name = "x64"
     $scope.quantity = 0
@@ -50,10 +50,16 @@ app.filter('customFilter', () => {
     }
 })
 
-app.factory('ToDoService', () => {
+/* app.factory('ToDoService', () => {
     const TODOService = {}
     TODOService.clean = () => {
         localStorage.clear()
     }
     return TODOService
+}) */
+
+app.service('ToDoService', function () {
+    this.clean = () => {
+        localStorage.clear()
+    }
 })
