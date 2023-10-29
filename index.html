@@ -9,24 +9,27 @@
     <script src="controller.js"></script>
 </head>
 <body ng-controller="firstController">
-    <!-- <div>
-        <input type="text" ng-model="name">
-        <select ng-model="quantity">
-            <option value="" selected hidden>Selecciona</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-        <button ng-click="repeat()">Load</button>
-    </div>
-    <p>{{"Comentario: " + name}}</p>
-    <ul>
-        <li ng-repeat="comment in commentaryArray">
-            {{comment.title}}
-        </li>
-    </ul> -->
+    <p>{{$parent.global}}</p>
+    <section ng-hide="true">
+        <div>
+            <input type="text" ng-model="name">
+            <select ng-model="quantity">
+                <option value="" selected hidden>Selecciona</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button ng-click="repeat()">Load</button>
+        </div>
+        <p>{{"Comentario: " + name}}</p>
+        <ul>
+            <li ng-repeat="comment in commentaryArray">
+                {{comment.title}}
+            </li>
+        </ul>
+    </section>
     <section>
         <form ng-submit="addTask()">
             <input type="text" ng-model="task.description">
@@ -38,7 +41,7 @@
     <hr>
     <ul>
         <li ng-repeat="task in todoList">
-            <p>{{task.description}} - {{task.time | date : 'short'}}</p>
+            <p>{{task.description | customFilter}} - {{task.time | date : 'short'}}</p>
         </li>
     </ul>
 </body>

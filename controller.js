@@ -1,10 +1,11 @@
 const app = angular.module("firstModule", [])
-app.controller("firstController", ["$scope", ($scope) => {
+app.controller("firstController", ["$scope","$rootScope", ($scope,$rootScope) => {
 
     $scope.name = "x64"
     $scope.quantity = 0
     $scope.commentaryArray = []
     $scope.task = {}
+    $rootScope.global = 'nepe'
 
     if (localStorage.getItem('TODO')) $scope.todoList = JSON.parse(localStorage.getItem('TODO'))
     else $scope.todoList = []
@@ -13,6 +14,7 @@ app.controller("firstController", ["$scope", ($scope) => {
         const res = await fetch('https://jsonplaceholder.typicode.com/posts')
         const parsedRes = await res.json()
         $scope.commentaryArray = parsedRes
+        $scope.$apply()
     }
 
     $scope.addTask = () => {
@@ -30,7 +32,13 @@ app.controller("firstController", ["$scope", ($scope) => {
     // $scope.$watch(() => $scope.task,(element) => {
     //     console.log(element)
     // })
-    // $scope.$watchCollection('task',(element) => {
-    //     console.log(element)
-    // })
+    $scope.$watchCollection('task', (element) => {
+        console.log(element)
+    })
 }])
+
+app.filter('customFilter', () => {
+    return (text) => {
+        return text.toUpperCase()
+    }
+})
