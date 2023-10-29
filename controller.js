@@ -6,6 +6,7 @@ app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scop
     $scope.quantity = 0
     $scope.commentaryArray = []
     $scope.task = {}
+    $scope.imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.MhSMHNdaMICv--Ztu3hhvgHaHa%26pid%3DApi&f=1&ipt=da2a7f69dcb18074b50bd3509d28fa3f780f1b6ec7046c9f56d2c2a3dc0d3e99&ipo=images"
     $rootScope.global = 'nepe'
 
     if (localStorage.getItem('TODO')) $scope.todoList = JSON.parse(localStorage.getItem('TODO'))
