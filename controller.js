@@ -26,4 +26,11 @@ app.controller("firstController", ["$scope", ($scope) => {
         localStorage.setItem('TODO', JSON.stringify(clearList))
         $scope.task = {}
     }
+
+    // $scope.$watch(() => $scope.task,(element) => {
+    //     console.log(element)
+    // })
+    // $scope.$watchCollection('task',(element) => {
+    //     console.log(element)
+    // })
 }])
