@@ -1,30 +1,57 @@
 <!DOCTYPE html>
 <html ng-app="firstModule" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Try whit angular JS</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="controller.js"></script>
 </head>
+
 <body ng-controller="firstController">
-    <div>
-        <input type="text" ng-model="name">
-        <select ng-model="quantity" ng-change="repeat()">
-            <option value="" selected hidden>Selecciona</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-    </div>
-    <p>{{"Comentario: " + name}}</p>
+    <p>{{$parent.global}}</p>
+    <section ng-hide="true">
+        <div>
+            <input type="text" ng-model="name">
+            <select ng-model="quantity">
+                <option value="" selected hidden>Selecciona</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button ng-click="repeat()">Load</button>
+        </div>
+        <p>{{"Comentario: " + name}}</p>
+        <ul>
+            <li ng-repeat="comment in commentaryArray">
+                {{comment.title}}
+            </li>
+        </ul>
+    </section>
+    <section>
+        <form ng-submit="addTask()">
+            <input type="text" ng-model="task.description">
+            <input type="datetime-local" ng-model="task.time">
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    <br>
+    <button ng-click="delete()">Eliminar</button>
+    <hr>
     <ul>
-        <li ng-repeat="q in commentaryArray">
-            {{name}}
+        <li ng-repeat="task in todoList">
+            <p>{{task.description | customFilter}} - {{task.time | date : 'short'}}</p>
         </li>
     </ul>
-    <script src="controller.js"></script>
+    <br>
+    <hr>
+    <button ng-click="bandera = !bandera" ng-class="{'red':bandera, 'green': !bandera}">Click me</button>
+    <img ng-cloak ng-src="{{imageUrl}}" alt=""> <!-- ng-cloak oculta el elemento hasta que se cargue -->
+    <div back-img="{{imageUrl}}" alt="">
 </body>
+
 </html>
