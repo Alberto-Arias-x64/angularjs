@@ -1,8 +1,9 @@
-const app = angular.module("firstModule", [])
+const app = angular.module("firstModule", []) //declaracion
+//const app = angular.module("firstModule") //llamado
 
 app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scope, $rootScope, ToDoService) => {
 
-    $scope.name = "x64"
+    $scope.name = "Ropas de invierno y verano"
     $scope.quantity = 0
     $scope.commentaryArray = []
     $scope.task = {}
