@@ -10,6 +10,52 @@ app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scop
     $scope.imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.MhSMHNdaMICv--Ztu3hhvgHaHa%26pid%3DApi&f=1&ipt=da2a7f69dcb18074b50bd3509d28fa3f780f1b6ec7046c9f56d2c2a3dc0d3e99&ipo=images"
     $rootScope.global = 'nepe'
 
+    $scope.data = {
+        carteras: {
+            cartera1: {
+                visible: false,
+                data1: "sisa",
+                data2: "nokas"
+            },
+            cartera2: {
+                visible: false,
+                data1: "sisa",
+                data2: "nokas"
+            },
+            cartera3: {
+                visible: false,
+                data1: "sisa",
+                data2: "nokas"
+            },
+            cartera4: {
+                visible: false,
+                data1: "sisa",
+                data2: "nokas"
+            },
+            cartera5: {
+                visible: false,
+                data1: "sisa",
+                data2: "nokas"
+            }
+        }
+    }
+
+    function limpiarElemento(cartera) {
+        // Obtener el índice del elemento a limpiar
+        const indice = Object.keys($scope.data.carteras).indexOf(cartera);
+
+        // Recorrer los elementos anteriores y moverlos una posición hacia atrás
+        for (let i = indice; i > 0; i--) {
+            const carteraActual = `cartera${i}`;
+            const carteraAnterior = `cartera${i - 1}`;
+
+            $scope.data.carteras[carteraActual] = $scope.data.carteras[carteraAnterior];
+        }
+
+        // Ocultar el elemento limpiado
+        $scope.data.carteras[`cartera${indice}`].visible = false;
+    }
+
     if (localStorage.getItem('TODO')) $scope.todoList = JSON.parse(localStorage.getItem('TODO'))
     else $scope.todoList = []
 
@@ -66,11 +112,11 @@ app.service('ToDoService', function () {
     }
 })
 
-app.directive('backImg', function(){
+app.directive('backImg', function () {
     return function (scope, element, attrs) {
         attrs.$observe('backImg', (value) => {
             element.css({
-                "background" : `url(${value})`,
+                "background": `url(${value})`,
                 "background—size": "cover",
                 "background-repeat": "no-repeat",
                 "background—position": "center",
@@ -81,5 +127,5 @@ app.directive('backImg', function(){
         })
         eval("console.log('evaluame esta')")
         eval("console.log('evaluame esta')")
-    } 
+    }
 })
