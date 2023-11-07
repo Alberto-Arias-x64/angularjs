@@ -40,7 +40,7 @@ app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scop
         }
     }
 
-    function limpiarElemento(cartera) {
+    $scope.limpiarElemento =  function (cartera) {
         const index = Object.keys($scope.data.carteras).indexOf(cartera);
 
         for (let i = index; i > 0; i--) {
