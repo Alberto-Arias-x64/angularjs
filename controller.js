@@ -41,19 +41,15 @@ app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scop
     }
 
     function limpiarElemento(cartera) {
-        // Obtener el índice del elemento a limpiar
-        const indice = Object.keys($scope.data.carteras).indexOf(cartera);
+        const index = Object.keys($scope.data.carteras).indexOf(cartera);
 
-        // Recorrer los elementos anteriores y moverlos una posición hacia atrás
-        for (let i = indice; i > 0; i--) {
+        for (let i = index; i > 0; i--) {
             const carteraActual = `cartera${i}`;
             const carteraAnterior = `cartera${i - 1}`;
 
             $scope.data.carteras[carteraActual] = $scope.data.carteras[carteraAnterior];
+            if (i === index) $scope.data.carteras[carteraActual].visible = false
         }
-
-        // Ocultar el elemento limpiado
-        $scope.data.carteras[`cartera${indice}`].visible = false;
     }
 
     if (localStorage.getItem('TODO')) $scope.todoList = JSON.parse(localStorage.getItem('TODO'))
