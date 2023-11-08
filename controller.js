@@ -1,4 +1,4 @@
-const app = angular.module("firstModule", []) //declaracion
+const app = angular.module("firstModule", ['ngAnimate']) //declaracion
 //const app = angular.module("firstModule") //llamado
 
 app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scope, $rootScope, ToDoService) => {
