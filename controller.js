@@ -40,7 +40,7 @@ app.controller("firstController", ["$scope", "$rootScope", "ToDoService", ($scop
         }
     }
 
-    $scope.limpiarElemento =  function (cartera) {
+    $scope.limpiarElemento = function (cartera) {
         const index = Object.keys($scope.data.carteras).indexOf(cartera);
 
         for (let i = index; i > 0; i--) {
@@ -125,3 +125,42 @@ app.directive('backImg', function () {
         eval("console.log('evaluame esta')")
     }
 })
+
+app.filter('numeroTexto', function () {
+    var unidades = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
+    var especiales = ['', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
+    var decenas = ['', 'diez', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
+    var centenas = ['', 'ciento', 'doscientos', 'trescientos', 'cuatrocientos', 'quinientos', 'seiscientos', 'setecientos', 'ochocientos', 'novecientos'];
+
+    return function (numero) {
+        if (numero === 0) {
+            return 'cero';
+        } else {
+            return convertir(numero);
+        }
+
+        function convertir(numero) {
+            if (numero < 10) {
+                return unidades[numero];
+            } else if (numero < 20) {
+                return especiales[numero - 10];
+            } else if (numero < 100) {
+                var decena = Math.floor(numero / 10);
+                var unidad = numero % 10;
+                if (unidad !== 0) {
+                    return decenas[decena] + ' y ' + unidades[unidad];
+                } else {
+                    return decenas[decena];
+                }
+            } else if (numero < 1000) {
+                var centena = Math.floor(numero / 100);
+                var resto = numero % 100;
+                if (resto !== 0) {
+                    return centenas[centena] + ' ' + convertir(resto);
+                } else {
+                    return centenas[centena];
+                }
+            }
+        }
+    };
+});
