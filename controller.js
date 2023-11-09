@@ -131,6 +131,7 @@ app.filter('numeroTexto', function () {
     var especiales = ['', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
     var decenas = ['', 'diez', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
     var centenas = ['', 'ciento', 'doscientos', 'trescientos', 'cuatrocientos', 'quinientos', 'seiscientos', 'setecientos', 'ochocientos', 'novecientos'];
+    var miles = ['', 'mil', 'millón', 'mil millones'];
 
     return function (numero) {
         if (numero === 0) {
@@ -159,6 +160,30 @@ app.filter('numeroTexto', function () {
                     return centenas[centena] + ' ' + convertir(resto);
                 } else {
                     return centenas[centena];
+                }
+            } else if (numero < 1000000) {
+                var mil = Math.floor(numero / 1000);
+                var restoMil = numero % 1000;
+                if (restoMil !== 0) {
+                    return convertir(mil) + ' ' + miles[1] + ' ' + convertir(restoMil);
+                } else {
+                    return convertir(mil) + ' ' + miles[1];
+                }
+            } else if (numero < 1000000000) {
+                var millon = Math.floor(numero / 1000000);
+                var restoMillon = numero % 1000000;
+                if (restoMillon !== 0) {
+                    return convertir(millon) + ' ' + miles[2] + ' ' + convertir(restoMillon);
+                } else {
+                    return convertir(millon) + ' ' + miles[2];
+                }
+            } else if (numero < 1000000000000) {
+                var milMillon = Math.floor(numero / 1000000000);
+                var restoMilMillon = numero % 1000000000;
+                if (restoMilMillon !== 0) {
+                    return convertir(milMillon) + ' ' + miles[3] + ' ' + convertir(restoMilMillon);
+                } else {
+                    return convertir(milMillon) + ' ' + miles[3];
                 }
             }
         }
